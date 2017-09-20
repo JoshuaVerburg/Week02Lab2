@@ -21,5 +21,6 @@
             </form>
         </div>
         ${errorMessage}
+        ${logoutMessage}
     </body>
 </html>

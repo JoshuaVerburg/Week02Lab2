@@ -22,7 +22,19 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String logout = request.getParameter("logout");
+        if(logout != null){
+            request.setAttribute("logoutMessage", "Logged Out");
+             // forward the request back to index.jsp
+             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+             // stop other execution of code
+             return;
+        }
+                
+                
        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+       
+       
 
     }
 
@@ -31,11 +43,14 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-         
+            
+            
         if (username == null || password == null) {
                     getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     return;
         }
+        
+
         
         //validation
         if (username.isEmpty() || password.isEmpty()) {
